@@ -1,0 +1,33 @@
+class NestedIterator {
+    stack<NestedInteger>st;
+public:
+    
+    void pushList(vector<NestedInteger> &nestedList) {
+        for(int i=nestedList.size()-1;i>=0;i--) {
+            st.push(nestedList[i]);
+        }    
+    }
+    
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        pushList(nestedList);
+    }
+    
+    int next() {
+        hasNext();
+        int res = st.top().getInteger();
+        st.pop();
+        return res;
+    }
+    
+    bool hasNext() {
+        while(!st.empty()) {
+            if(st.top().isInteger()) {
+                return true;
+            }
+            auto x = st.top();
+            st.pop();
+            pushList(x.getList());
+        }
+        return false;
+    }
+};
