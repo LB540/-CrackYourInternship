@@ -1,0 +1,27 @@
+Using Hare and tortoise method.
+Here we’ll be using 2 pointers fast and slow. Initially slow will initialize with the first element and fast will initialize with the element present in nums[0] index.
+In the first loop, we’ll move both pointers with 1 index & break after slow=fast.
+Then we’ll make fast 0 & in the next loop we’ll move the slow pointer with 1 position and fast with 2 positions.
+One point the both will equal and return fast/slow.
+Time complexity: O(n).
+
+
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& arr) {
+        int slow = arr[0];
+        int fast = arr[0];
+        
+        do{
+            slow = arr[slow];
+            fast = arr[arr[fast]];
+        }while(slow!=fast);
+        fast = arr[0];
+        while(slow!=fast) {
+            fast = arr[fast];
+            slow = arr[slow];
+        }
+        return slow;
+    }
+};
