@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+			// stack<int>st;
+			// for(auto x:nums) {
+			// if(st.empty())
+			// st.push(x);
+			// else if(st.top()!=x)
+			// st.push(x);
+			// }
+			// int size = st.size();
+			// //Pop the unique elements and add to array
+			// for(int i=size;i>=0;i--) {
+			// nums[i] = st.top();st.pop();
+			// }
+			// return size;
+        int i=0,j=1;
+        while(j!=nums.size()) {
+            if(nums[i]==nums[j])
+                j++;
+            else if(nums[i]!=nums[j]){
+                i++;
+                nums[i]=nums[j];
+                j++;
+            }
+        }
+        return i+1;
+    }
+};
